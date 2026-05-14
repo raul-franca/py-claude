@@ -23,3 +23,7 @@ Registro de todas as instruções passadas ao Claude neste projeto.
 8. **"push isso"** — Push para `raul-franca/py-claude` na branch `main`.
 
 9. **"Crie um claude_comandos.md e add todas as instruções que eu passar no arquivo claude.md add essa regra tbm pois esse projeto é um curso e eu vou querer revisar o que eu fiz no futuro"** — Criação deste arquivo e adição da regra no `CLAUDE.md`.
+
+10. **"add um endpoint de healthcheck"** — Adicionado endpoint `GET /health` em `bff/main.py` que retorna `{"status": "ok"}`, sem autenticação.
+
+11. **"@bff/main.py add docstring para as funcoes"** — Adicionadas docstrings em todas as funções de `bff/main.py`: `get_api_key`, `dummyjson_get`, `health`, `search_recipes` e `get_recipe_by_id`.
