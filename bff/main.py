@@ -3,6 +3,9 @@ from fastapi import FastAPI, Depends, HTTPException, Query, Path, status
 from fastapi.security import APIKeyHeader
 import httpx
 from typing import Optional
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(
     title="API de Receitas (DummyJSON Proxy)",
