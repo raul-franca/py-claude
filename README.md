@@ -5,7 +5,7 @@ Este é um Backend for Frontend (BFF) simples, de caráter educativo, que serve 
 
 ## Requisitos
 
-- Python 3.12+ 
+- Python 3.12+
 - FastAPI
 - Uvicorn (para execução do servidor)
 - httpx (para requisições HTTP assíncronas)
@@ -15,38 +15,63 @@ Este é um Backend for Frontend (BFF) simples, de caráter educativo, que serve 
 
 1. **Crie um ambiente virtual:**
 
-   Se estiver utilizando `venv`, execute:
-
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # Para Linux/Mac
-   venv\Scripts\activate     # Para Windows
+   python3 -m venv .venv
+   source .venv/bin/activate  # Linux/Mac
+   .venv\Scripts\activate     # Windows
    ```
 
-3. **Instale as dependências:**
+2. **Instale as dependências:**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Configure a chave de API:**
+3. **Configure a chave de API:**
 
-   - **Usando uma variável de ambiente:** Crie um arquivo `.env` na raiz do projeto com a chave de API, como mostrado abaixo:
+   Crie um arquivo `.env` na raiz do projeto:
 
-     ```env
-     API_KEY=SuaChaveSecretaAqui
-     ```
-
+   ```env
+   API_KEY=SuaChaveSecretaAqui
+   ```
 
 ## Como Executar
 
-1. **Inicie o servidor FastAPI:**
+```bash
+.venv/bin/uvicorn bff.main:app --reload
+```
 
-   Para rodar a aplicação com o **Uvicorn**, execute o comando abaixo:
+O servidor estará disponível em `http://127.0.0.1:8000`.
+Documentação interativa (Swagger) em `http://127.0.0.1:8000/docs`.
 
-   ```bash
-   dotenv run fastapi dev bff/main.py
-   ```
+## Autenticação
 
-   O servidor estará disponível em `http://127.0.0.1:8000`.
+Todos os endpoints (exceto `/health`) exigem o header `X-API-Key`:
 
+```bash
+curl -H "X-API-Key: SuaChaveSecretaAqui" "http://127.0.0.1:8000/recipes/search?q=pasta"
+```
+
+## Endpoints
+
+| Método | Rota | Auth | Descrição |
+|--------|------|------|-----------|
+| GET | `/health` | Não | Healthcheck — verifica se o servidor está no ar |
+| GET | `/recipes/search` | Sim | Busca receitas por termo (`q`, `limit`, `skip`) |
+| GET | `/recipes/{recipe_id}` | Sim | Detalha uma receita pelo ID (1–50) |
+
+## Estrutura
+
+```
+bff/
+├── bff/
+│   ├── __init__.py
+│   ├── client.py         # Cliente HTTP (dummyjson_get, timeout, erros)
+│   ├── auth.py           # Autenticação por API Key (get_api_key)
+│   ├── routes.py         # Endpoints (APIRouter)
+│   └── main.py           # App FastAPI + include_router
+├── .env                  # Variáveis de ambiente (não versionado)
+├── requirements.txt
+├── CLAUDE.md
+└── claude_comandos.md    # Histórico de instruções do curso
+```

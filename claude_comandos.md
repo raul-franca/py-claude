@@ -27,3 +27,17 @@ Registro de todas as instruções passadas ao Claude neste projeto.
 10. **"add um endpoint de healthcheck"** — Adicionado endpoint `GET /health` em `bff/main.py` que retorna `{"status": "ok"}`, sem autenticação.
 
 11. **"@bff/main.py add docstring para as funcoes"** — Adicionadas docstrings em todas as funções de `bff/main.py`: `get_api_key`, `dummyjson_get`, `health`, `search_recipes` e `get_recipe_by_id`.
+
+12. **"add type hints nas funções"** — Adicionados type hints de retorno em todas as funções de `bff/main.py`. Também tipado o parâmetro `params` de `dummyjson_get` como `dict[str, str | int]`.
+
+13. **"add comentarios detalhados do basico ao avancado add no claude"** — Adicionados comentários educacionais detalhados em todo o `bff/main.py`, categorizados por nível `[BÁSICO]`, `[INTERMEDIÁRIO]` e `[AVANÇADO]`. Cobrem: imports, FastAPI, async/await, Depends, Query/Path, HTTPException, timeouts, context managers e padrões REST.
+
+14. **"separe o codigo em cliente e servidor"** — Código separado em dois módulos: `bff/client.py` (lógica HTTP com DummyJSON: `dummyjson_get`, timeout, tratamento de erros) e `bff/main.py` (app FastAPI, autenticação, endpoints). O `main.py` importa o cliente via importação relativa `from .client import dummyjson_get`, desacoplando transporte de roteamento.
+
+15. **"seria melhor com um arquivo para auth e rotas tbm"** — Separação completa em 4 módulos: `client.py` (HTTP), `auth.py` (API Key, `get_api_key`), `routes.py` (endpoints via `APIRouter`, tags Swagger), `main.py` (só cria o app e registra o router via `app.include_router()`). Cada arquivo tem uma única responsabilidade (Single Responsibility Principle).
+
+16. **"sempre atualize o @CLAUDE.md"** — Adicionada regra no `CLAUDE.md`: sempre atualizar o arquivo quando estrutura, endpoints ou comportamento do projeto mudar. Estrutura e tabela de endpoints também atualizadas para refletir o estado atual (4 módulos + endpoint `/health`).
+
+17. **"sempre atualizar o @README.md"** — Adicionada regra no `CLAUDE.md`: sempre atualizar `README.md` quando estrutura, endpoints ou comportamento mudar. `README.md` atualizado: comando de execução corrigido (era `dotenv run fastapi dev bff/main.py`, agora `.venv/bin/uvicorn bff.main:app --reload`), tabela de endpoints com coluna Auth, estrutura de 4 módulos e seção de autenticação.
+
+18. **"passe a fazer os commits em portugues"** — Preferência registrada: todas as mensagens de commit deste projeto devem ser escritas em português.

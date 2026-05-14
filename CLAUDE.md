@@ -37,6 +37,7 @@ curl -H "X-API-Key: minha-chave-secreta" "http://127.0.0.1:8000/recipes/search?q
 
 | Método | Rota | Descrição |
 |--------|------|-----------|
+| GET | `/health` | Healthcheck — verifica se o servidor está no ar (sem autenticação) |
 | GET | `/recipes/search` | Busca receitas por termo (`q`, `limit`, `skip`) |
 | GET | `/recipes/{recipe_id}` | Detalha uma receita pelo ID (1–50) |
 
@@ -46,13 +47,18 @@ curl -H "X-API-Key: minha-chave-secreta" "http://127.0.0.1:8000/recipes/search?q
 bff/
 ├── bff/
 │   ├── __init__.py
-│   └── main.py           # Aplicação FastAPI
+│   ├── client.py         # Cliente HTTP (dummyjson_get, timeout, erros)
+│   ├── auth.py           # Autenticação por API Key (get_api_key)
+│   ├── routes.py         # Endpoints (APIRouter)
+│   └── main.py           # App FastAPI + include_router
 ├── .env                  # Variáveis de ambiente (não versionado)
 ├── requirements.txt
 ├── CLAUDE.md
 └── claude_comandos.md    # Histórico de instruções do curso
 ```
 
-## Regra: Registro de Instruções
+## Regras
 
-Este projeto é um curso. A cada instrução recebida, o Claude deve adicionar uma entrada em `claude_comandos.md` com a data e uma descrição do que foi feito. Isso permite revisar o histórico de aprendizado no futuro.
+- **Registro de instruções:** A cada instrução recebida, adicionar uma entrada em `claude_comandos.md` com a data e descrição do que foi feito.
+- **Atualizar CLAUDE.md:** Sempre que a estrutura, endpoints ou comportamento do projeto mudar, atualizar este arquivo para refletir o estado atual.
+- **Atualizar README.md:** Sempre que a estrutura, endpoints, comando de execução ou comportamento do projeto mudar, atualizar o `README.md` para refletir o estado atual.
