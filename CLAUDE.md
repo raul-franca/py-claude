@@ -46,8 +46,13 @@ curl -H "X-API-Key: minha-chave-secreta" "http://127.0.0.1:8000/recipes/search?q
 bff/
 ├── bff/
 │   ├── __init__.py
-│   └── main.py       # Aplicação FastAPI
-├── .env              # Variáveis de ambiente (não versionado)
+│   └── main.py           # Aplicação FastAPI
+├── .env                  # Variáveis de ambiente (não versionado)
 ├── requirements.txt
-└── CLAUDE.md
+├── CLAUDE.md
+└── claude_comandos.md    # Histórico de instruções do curso
 ```
+
+## Regra: Registro de Instruções
+
+Este projeto é um curso. A cada instrução recebida, o Claude deve adicionar uma entrada em `claude_comandos.md` com a data e uma descrição do que foi feito. Isso permite revisar o histórico de aprendizado no futuro.
