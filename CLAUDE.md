@@ -18,12 +18,25 @@ API_KEY=minha-chave-secreta
 
 ## Rodar o servidor
 
+**Iniciar:**
 ```bash
 .venv/bin/uvicorn bff.main:app --reload
 ```
 
 Servidor disponível em http://127.0.0.1:8000
 Documentação Swagger em http://127.0.0.1:8000/docs
+
+**Parar:**
+```bash
+pkill -f "uvicorn bff.main:app"
+```
+
+**Reload manual** (parar e reiniciar):
+```bash
+pkill -f "uvicorn bff.main:app" && .venv/bin/uvicorn bff.main:app --reload
+```
+
+> Com `--reload` ativo, o uvicorn já recarrega automaticamente ao detectar mudanças em arquivos `.py`.
 
 ## Autenticação
 

@@ -37,12 +37,27 @@ Este é um Backend for Frontend (BFF) simples, de caráter educativo, que serve 
 
 ## Como Executar
 
+**Iniciar:**
 ```bash
 .venv/bin/uvicorn bff.main:app --reload
 ```
 
 O servidor estará disponível em `http://127.0.0.1:8000`.
 Documentação interativa (Swagger) em `http://127.0.0.1:8000/docs`.
+
+**Parar:**
+
+Pressione `Ctrl+C` no terminal onde o servidor está rodando. Ou, para encerrar processos em segundo plano:
+```bash
+pkill -f "uvicorn bff.main:app"
+```
+
+**Reload manual** (sem reiniciar o processo):
+
+Com `--reload` ativo, o uvicorn já detecta alterações nos arquivos `.py` e recarrega automaticamente. Para forçar um reload manualmente, pare e inicie novamente:
+```bash
+pkill -f "uvicorn bff.main:app" && .venv/bin/uvicorn bff.main:app --reload
+```
 
 ## Autenticação
 

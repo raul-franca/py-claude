@@ -41,3 +41,5 @@ Registro de todas as instruções passadas ao Claude neste projeto.
 17. **"sempre atualizar o @README.md"** — Adicionada regra no `CLAUDE.md`: sempre atualizar `README.md` quando estrutura, endpoints ou comportamento mudar. `README.md` atualizado: comando de execução corrigido (era `dotenv run fastapi dev bff/main.py`, agora `.venv/bin/uvicorn bff.main:app --reload`), tabela de endpoints com coluna Auth, estrutura de 4 módulos e seção de autenticação.
 
 18. **"passe a fazer os commits em portugues"** — Preferência registrada: todas as mensagens de commit deste projeto devem ser escritas em português.
+
+19. **"add comandos para parar a aplicação e para fazer reload"** — Adicionados no `README.md` e `CLAUDE.md`: comando para parar (`pkill -f "uvicorn bff.main:app"`), nota sobre reload automático via `--reload`, e comando para reload manual (pkill + reinício).
